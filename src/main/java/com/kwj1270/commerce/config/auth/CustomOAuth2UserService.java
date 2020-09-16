@@ -45,6 +45,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // session에 등록
 
+        /*
+        현재 enum 이 key-value 구조로 되어있는데 해당 user 의 Role Enum 키인 ROLE_GUEST or ROLE_USER 가져오고
+        OAuth2 유저 정보들과
+        이름을 구하는 key를 매개변수로
+        싱글톤 패턴의 SimpleGrantedAuthority 객체 생성후
+        해당 SimpleGrantedAuthority를 가진 User 반환
+        SpringSecurity 에서는 ROLE_ 접두사가 붙은 단어로 사용자 구분
+        ROLE_GUEST / ROLE_USER / ROLE_ADMIN 이 존재한다.
+        */
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
