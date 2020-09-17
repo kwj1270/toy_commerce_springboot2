@@ -2,6 +2,7 @@ package com.kwj1270.commerce.domain.user;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
 import com.kwj1270.commerce.domain.enums.SocialType;
+import com.kwj1270.commerce.dto.user.UserUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,6 +51,13 @@ public class User extends BaseTimeEntity{
 
     public User update(String name, String picture){
         this.name = name;
+        this.picture = picture;
+        return this;
+    }
+
+    public User update(String name, String password, String picture){
+        this.name = name;
+        this.password = password;
         this.picture = picture;
         return this;
     }
