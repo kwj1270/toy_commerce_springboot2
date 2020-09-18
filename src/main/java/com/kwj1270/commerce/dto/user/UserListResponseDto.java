@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 public class UserListResponseDto {
     private String name;
+    private String id;
     private String email;
     private String picture;
     private Role role;
@@ -16,6 +17,7 @@ public class UserListResponseDto {
 
     public UserListResponseDto(User user){
         this.name = user.getName();
+        this.id = user.getId();
         this.email = user.getEmail();
         this.picture = user.getPicture();
         this.role = user.getRole();

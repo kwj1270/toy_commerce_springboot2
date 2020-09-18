@@ -21,7 +21,7 @@ public class MainController {
     }
 
     @GetMapping("/loginProcess")
-    public String loginProcess(@LoginUser SessionUser user, Long id, String password) {
+    public String loginProcess(@LoginUser SessionUser user, String id, String password) {
         if(user != null) return "main";
         userService.login(id, password);
         return "main";

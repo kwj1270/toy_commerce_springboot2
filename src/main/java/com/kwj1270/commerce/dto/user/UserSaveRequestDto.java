@@ -6,8 +6,8 @@ import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
 
 public class UserSaveRequestDto {
-
     private String name;
+    private String id;
     private String password;
     private String email;
     private String picture;
@@ -15,8 +15,9 @@ public class UserSaveRequestDto {
     private final SocialType socialType = SocialType.NORMAL;
 
     @Builder
-    public UserSaveRequestDto(String name, String password, String email, String picture){
+    public UserSaveRequestDto(String name, String id, String password, String email, String picture){
         this.name = name;
+        this.id = id;
         this.password = password;
         this.email = email;
         this.picture = picture;
@@ -25,6 +26,7 @@ public class UserSaveRequestDto {
     public User toEntity(){
         return User.builder()
                 .name(name)
+                .id(id)
                 .password(password)
                 .email(email)
                 .picture(picture)

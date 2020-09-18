@@ -23,15 +23,15 @@ public class UserService {
 
     @Transactional
     public Long save(UserSaveRequestDto requestDto){
-        return userRepository.save(requestDto.toEntity()).getId();
+        return userRepository.save(requestDto.toEntity()).getSeq();
     }
 
     @Transactional
-    public Long login(Long id, String password){
+    public Long login(String id, String password){
         User user = userRepository.findByIdAndPassword(id, password).orElseThrow(() -> new
                 IllegalArgumentException("해당 아이디 또는 비밀번호가 존재하지 않습니다."));
         httpSession.setAttribute("user", new SessionUser(user));
-        return id;
+        return user.getSeq();
     }
 
     @Transactional
@@ -43,15 +43,15 @@ public class UserService {
     }
 
     @Transactional
-    public Long update(Long id, UserUpdateRequestDto requestDto){
+    public Long update(String id, UserUpdateRequestDto requestDto){
         User user = userRepository.findById(id).orElseThrow(() -> new
                 IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
         user.update(requestDto.getName(), requestDto.getPassword(), requestDto.getPicture());
-        return id;
+        return user.getSeq();
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(String id){
         User user = userRepository.findById(id).orElseThrow(() -> new
                 IllegalArgumentException("해당 사용자 없습니다. id="+ id));
         userRepository.delete(user);

@@ -17,7 +17,7 @@ public class Board extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long seq;
 
     @Column(length = 500, nullable = false)
     private String title;

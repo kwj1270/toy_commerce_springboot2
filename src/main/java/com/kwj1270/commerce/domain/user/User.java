@@ -17,10 +17,13 @@ public class User extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long seq;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(unique = true)
+    private String id;
 
     @Column
     private String password;
@@ -40,8 +43,9 @@ public class User extends BaseTimeEntity{
     private SocialType socialType;
 
     @Builder
-    public User(String name, String password, String email, String picture, Role role, SocialType socialType){
+    public User(String name, String id,String password, String email, String picture, Role role, SocialType socialType){
         this.name = name;
+        this.id = id;
         this.password = password;
         this.email = email;
         this.picture = picture;
