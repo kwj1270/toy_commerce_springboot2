@@ -1,6 +1,7 @@
 package com.kwj1270.commerce.dto.user;
 
 import com.kwj1270.commerce.domain.enums.SocialType;
+import com.kwj1270.commerce.domain.enums.UserStatus;
 import com.kwj1270.commerce.domain.user.Role;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
@@ -13,6 +14,7 @@ public class UserSaveRequestDto {
     private String picture;
     private final Role role = Role.GUEST;
     private final SocialType socialType = SocialType.NORMAL;
+    private final UserStatus userStatus = UserStatus.ACTIVE;
 
     @Builder
     public UserSaveRequestDto(String name, String id, String password, String email, String picture){
@@ -30,8 +32,9 @@ public class UserSaveRequestDto {
                 .password(password)
                 .email(email)
                 .picture(picture)
-                .socialType(socialType)
                 .role(role)
+                .socialType(socialType)
+                .userStatus(userStatus)
                 .build();
     }
 }

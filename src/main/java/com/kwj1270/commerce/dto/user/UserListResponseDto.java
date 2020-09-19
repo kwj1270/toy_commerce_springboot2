@@ -1,6 +1,7 @@
 package com.kwj1270.commerce.dto.user;
 
 import com.kwj1270.commerce.domain.enums.SocialType;
+import com.kwj1270.commerce.domain.enums.UserStatus;
 import com.kwj1270.commerce.domain.user.Role;
 import com.kwj1270.commerce.domain.user.User;
 
@@ -13,6 +14,7 @@ public class UserListResponseDto {
     private String picture;
     private Role role;
     private SocialType socialType;
+    private UserStatus userStatus;
     private LocalDateTime modifiedDate;
 
     public UserListResponseDto(User user){
@@ -22,6 +24,7 @@ public class UserListResponseDto {
         this.picture = user.getPicture();
         this.role = user.getRole();
         this.socialType = user.getSocialType();
+        this.userStatus = user.getUserStatus();
         this.modifiedDate = user.getModifiedDate();
     }
 
