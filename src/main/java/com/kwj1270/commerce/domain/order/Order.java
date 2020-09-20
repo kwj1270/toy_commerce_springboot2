@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -20,26 +21,34 @@ public class Order extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long seq;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Product product;
-
     @ManyToMany(fetch = FetchType.LAZY)
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "seq")
+    private List<Product> products;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatusType orderStatusType;
 
     @Builder
-    public Order(Product product, User user, OrderStatusType orderStatusType){
-        this.product = product;
+    public Order(User user, List<Product> products, OrderStatusType orderStatusType){
         this.user = user;
+        this.products = products;
         this.orderStatusType = orderStatusType;
+    }
+
+    public void setDelivery(){
+        this.orderStatusType = OrderStatusType.DELIVERY;
+    }
+
+    public void setComplete(){
+        this.orderStatusType = OrderStatusType.COMPLETE;
     }
 
     public void update(OrderStatusType orderStatusType){
         this.orderStatusType = orderStatusType;
     }
-
 
 }
