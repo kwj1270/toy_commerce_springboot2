@@ -3,11 +3,14 @@ package com.kwj1270.commerce.domain.product;
 import com.kwj1270.commerce.domain.BaseTimeEntity;
 import com.kwj1270.commerce.domain.enums.ProductType;
 import com.kwj1270.commerce.domain.enums.SizeType;
+import com.kwj1270.commerce.domain.order.Order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -15,33 +18,34 @@ import javax.persistence.*;
 public class Product extends BaseTimeEntity {
 
     @Id
+    @Column(name = "PRODUCT_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "PRODUCT_NAME", length = 500, nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "PRODUCT_PRICE", nullable = false)
     private long price;
 
-    @Column(nullable = false)
+    @Column(name = "PRODUCT_QUANTITY", nullable = false)
     private long quantity; // 수량
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(name = "PRODUCT_DESCRIPTION", columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "PRODUCT_PICTURE", length = 200, nullable = false)
     private String picture;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "PRODUCT_COLOR",length = 200, nullable = false)
     private String color;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "PRODUCT_SIZE", nullable = false)
     private SizeType sizeType;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "PRODUCT_PRODUCT_TYPE", nullable = false)
     private ProductType productType; // 카테고리
 
     @Builder

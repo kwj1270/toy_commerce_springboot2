@@ -1,4 +1,4 @@
-package com.kwj1270.commerce.domain.basket;
+package com.kwj1270.commerce.domain.cart;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
 import com.kwj1270.commerce.domain.enums.OrderStatusType;
@@ -19,43 +19,44 @@ import java.util.List;
 public class Cart extends BaseTimeEntity { // 장바구니
 
     @Id
+    @Column(name = "CART_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long seq;
+
+    @Column(name = "CART_AMOUNT", nullable = false)
+    private Long amount;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_SEQ")
     private User user;
 
-    @Column(nullable = false)
-    private Long count;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "seq")
-    private List<Product> products = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_SEQ")
+    private Product product;
 
     @Builder
-    public Cart(User user, Long count){
+    public Cart(User user, Long amount){
         this.user = user;
-        this.count = count;
+        this.amount = amount;
     }
 
     @Builder
-    public Cart(User user, Long count, List<Product> products){
+    public Cart(User user, Long amount, Product product){
         this.user = user;
-        this.count = count;
-        this.products = products;
-    }
-
-    public void addProduct(Product product){
-        this.products.add(product);
+        this.amount = amount;
+        this.product = product;
     }
 
     public Order toOrder(){
         return Order.builder()
                 .user(user)
-                .products(products)
+                .product(product)
                 .orderStatusType(OrderStatusType.READY)
                 .build();
     }
 
     public void update(Long Count){
-        this.count = count;
+        this.amount = amount;
     }
 
 }

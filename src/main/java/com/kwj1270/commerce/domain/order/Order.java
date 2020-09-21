@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -18,34 +17,37 @@ import java.util.List;
 public class Order extends BaseTimeEntity {
 
     @Id
+    @Column(name = "ORDER_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long seq;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_SEQ")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "seq")
-    private List<Product> products;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_SEQ")
+    private Product product;
 
-    @Column(nullable = false)
+    @Column(name = "ORDER_AMOUNT", nullable = false)
+    private Long amount;
+
+    @Column(name = "ORDER_STATUS_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatusType orderStatusType;
 
     @Builder
-    public Order(User user, List<Product> products, OrderStatusType orderStatusType){
+    public Order(User user, Product product, OrderStatusType orderStatusType){
         this.user = user;
-        this.products = products;
+        this.product = product;
         this.orderStatusType = orderStatusType;
     }
 
+    public void setReady(){this.orderStatusType = OrderStatusType.READY;}
     public void setDelivery(){
         this.orderStatusType = OrderStatusType.DELIVERY;
     }
-
-    public void setComplete(){
-        this.orderStatusType = OrderStatusType.COMPLETE;
-    }
+    public void setComplete(){ this.orderStatusType = OrderStatusType.COMPLETE; }
 
     public void update(OrderStatusType orderStatusType){
         this.orderStatusType = orderStatusType;

@@ -15,36 +15,36 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity{
 
     @Id
+    @Column(name = "USER_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
-    @Column(nullable = false)
+    @Column(name = "USER_NAME" , nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(name = "USER_ID", unique = true)
     private String id;
 
-    @Column
+    @Column(name = "USER_PASSWORD")
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "USER_EMAIL", nullable = false, unique = true)
     private String email;
 
-    @Column
+    @Column(name = "USER_PICTURE")
     private String picture;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "USER_ROLE" ,nullable = false)
     private Role role;
 
-    @Column
     @Enumerated(EnumType.STRING)
+    @Column(name = "USER_SOCIAL_TYPE")
     private SocialType socialType;
 
-    @Column
     @Enumerated(EnumType.STRING)
+    @Column(name = "USER_STATUS")
     private UserStatus userStatus;
-    // 휴면 유저인지 아닌지 상태 저장하기
 
     @Builder
     public User(String name, String id,String password, String email, String picture, Role role, SocialType socialType, UserStatus userStatus){
