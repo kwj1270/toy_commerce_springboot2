@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>LOGIN</title>
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-</head>
-<body>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/font-aos.min.css}">
 
+<body>
     <div th:replace="layout/header::header"></div>
     <div th:replace="layout/footer::footer"></div>
+
+    <script th:src="@{/js/jquery.min.js}"/>
+    <script th:src="@{/js/bootstrap.min.js}"/>
+    <script th:src="@{/js/popper.min.js}"/>
+    <script th:src="@{/js/aos.min.js}"/>
 </body>
 </html>

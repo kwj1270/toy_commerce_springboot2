@@ -2,16 +2,14 @@ package com.kwj1270.commerce.domain.cart;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
 import com.kwj1270.commerce.domain.enums.OrderStatusType;
-import com.kwj1270.commerce.domain.order.Order;
 import com.kwj1270.commerce.domain.product.Product;
 import com.kwj1270.commerce.domain.user.User;
+import com.kwj1270.commerce.dto.order.OrderSaveRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -26,6 +24,9 @@ public class Cart extends BaseTimeEntity { // 장바구니
     @Column(name = "CART_AMOUNT", nullable = false)
     private Long amount;
 
+    @Column(name = "CART_SUM", nullable = false)
+    private Long sum;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_SEQ")
     private User user;
@@ -35,28 +36,30 @@ public class Cart extends BaseTimeEntity { // 장바구니
     private Product product;
 
     @Builder
-    public Cart(User user, Long amount){
-        this.user = user;
+    public Cart(Long amount, Long sum, User user,  Product product){
         this.amount = amount;
-    }
-
-    @Builder
-    public Cart(User user, Long amount, Product product){
+        this.sum = sum;
         this.user = user;
-        this.amount = amount;
         this.product = product;
     }
 
-    public Order toOrder(){
-        return Order.builder()
+    public OrderSaveRequest toOrderSaveRequest(){
+        return OrderSaveRequest.builder()
+                .amount(amount)
+                .sum(sum)
                 .user(user)
                 .product(product)
                 .orderStatusType(OrderStatusType.READY)
                 .build();
     }
 
-    public void update(Long Count){
+    public void update(Long amount){
         this.amount = amount;
+        this.sum = getSum();
+    }
+
+    private Long getSum() {
+        return product.getPrice() * amount;
     }
 
 }
