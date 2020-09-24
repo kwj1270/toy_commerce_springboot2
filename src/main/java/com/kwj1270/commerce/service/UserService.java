@@ -23,7 +23,7 @@ public class UserService {
 
     @Transactional
     public Long save(UserSaveRequestDto requestDto){
-        return userRepository.save(requestDto.toEntity()).getSeq();
+        return userRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional
@@ -31,7 +31,7 @@ public class UserService {
         User user = userRepository.findByIdAndPassword(id, password).orElseThrow(() -> new
                 IllegalArgumentException("해당 아이디 또는 비밀번호가 존재하지 않습니다."));
         httpSession.setAttribute("user", new SessionUser(user));
-        return user.getSeq();
+        return user.getId();
     }
 
     @Transactional
@@ -47,7 +47,7 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new
                 IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
         user.update(requestDto.getName(), requestDto.getPassword(), requestDto.getPicture());
-        return user.getSeq();
+        return user.getId();
     }
 
     @Transactional

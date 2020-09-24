@@ -1,6 +1,7 @@
 package com.kwj1270.commerce.domain.user;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
+import com.kwj1270.commerce.domain.address.Address;
 import com.kwj1270.commerce.domain.enums.SocialType;
 import com.kwj1270.commerce.domain.enums.UserStatus;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -15,15 +17,15 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity{
 
     @Id
-    @Column(name = "USER_SEQ")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    private Long id;
 
     @Column(name = "USER_NAME" , nullable = false)
     private String name;
 
     @Column(name = "USER_ID", unique = true)
-    private String id;
+    private String userId;
 
     @Column(name = "USER_PASSWORD")
     private String password;
@@ -33,6 +35,10 @@ public class User extends BaseTimeEntity{
 
     @Column(name = "USER_PICTURE")
     private String picture;
+
+    @ManyToMany(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private List<Address> addresses;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "USER_ROLE" ,nullable = false)
@@ -47,9 +53,9 @@ public class User extends BaseTimeEntity{
     private UserStatus userStatus;
 
     @Builder
-    public User(String name, String id,String password, String email, String picture, Role role, SocialType socialType, UserStatus userStatus){
+    public User(String name, String userId,String password, String email, String picture, Role role, SocialType socialType, UserStatus userStatus){
         this.name = name;
-        this.id = id;
+        this.userId = userId;
         this.password = password;
         this.email = email;
         this.picture = picture;

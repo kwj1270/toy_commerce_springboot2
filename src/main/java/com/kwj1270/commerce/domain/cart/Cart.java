@@ -17,9 +17,9 @@ import javax.persistence.*;
 public class Cart extends BaseTimeEntity { // 장바구니
 
     @Id
-    @Column(name = "CART_SEQ")
+    @Column(name = "CART_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    private Long id;
 
     @Column(name = "CART_AMOUNT", nullable = false)
     private Long amount;
@@ -28,11 +28,11 @@ public class Cart extends BaseTimeEntity { // 장바구니
     private Long sum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_SEQ")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_SEQ")
+    @JoinColumn(name = "PRODUCT_ID")
     private Product product;
 
     @Builder
@@ -43,15 +43,6 @@ public class Cart extends BaseTimeEntity { // 장바구니
         this.product = product;
     }
 
-    public OrderSaveRequest toOrderSaveRequest(){
-        return OrderSaveRequest.builder()
-                .amount(amount)
-                .sum(sum)
-                .user(user)
-                .product(product)
-                .orderStatusType(OrderStatusType.READY)
-                .build();
-    }
 
     public void update(Long amount){
         this.amount = amount;

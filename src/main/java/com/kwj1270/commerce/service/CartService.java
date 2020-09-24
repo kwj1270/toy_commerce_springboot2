@@ -14,7 +14,7 @@ public class CartService {
 
     @Transactional
     public Long save(CartSaveRequestDto cartSaveRequest){
-        return cartRepository.save(cartSaveRequest.toEntity()).getSeq();
+        return cartRepository.save(cartSaveRequest.toEntity()).getId();
     }
 
 }

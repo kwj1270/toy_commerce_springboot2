@@ -17,24 +17,25 @@ public class Board extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    @Column(name = "BOARD_ID")
+    private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "BOARD_TITLE", length = 500, nullable = false)
     private String title;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "BOARD_SUBTITLE", length = 500, nullable = false)
     private String subTitle;
 
-    @Column( columnDefinition = "TEXT", nullable = false)
+    @Column(name = "BOARD_CONTENT", columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column(name = "BOARD_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private BoardType boardType;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
     private User user;
-
 
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType, User user) {

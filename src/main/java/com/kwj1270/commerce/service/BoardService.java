@@ -23,7 +23,7 @@ public class BoardService {
 
     @Transactional
     public Long save(BoardSaveRequestDto requestDto){
-        return boardRepository.save(requestDto.toEntity()).getSeq();
+        return boardRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional

@@ -8,7 +8,7 @@ import lombok.Builder;
 
 public class UserSaveRequestDto {
     private String name;
-    private String id;
+    private String userId;
     private String password;
     private String email;
     private String picture;
@@ -17,9 +17,9 @@ public class UserSaveRequestDto {
     private final UserStatus userStatus = UserStatus.ACTIVE;
 
     @Builder
-    public UserSaveRequestDto(String name, String id, String password, String email, String picture){
+    public UserSaveRequestDto(String name, String userId, String password, String email, String picture){
         this.name = name;
-        this.id = id;
+        this.userId = userId;
         this.password = password;
         this.email = email;
         this.picture = picture;
@@ -28,7 +28,7 @@ public class UserSaveRequestDto {
     public User toEntity(){
         return User.builder()
                 .name(name)
-                .id(id)
+                .userId(userId)
                 .password(password)
                 .email(email)
                 .picture(picture)
