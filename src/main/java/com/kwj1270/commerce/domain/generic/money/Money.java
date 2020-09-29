@@ -1,10 +1,12 @@
 package com.kwj1270.commerce.domain.generic.money;
 
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Function;
-
 
 public class Money {
     public static final Money ZERO = Money.wons(0);
@@ -23,7 +25,7 @@ public class Money {
         return bags.stream().map(bag -> monetary.apply(bag)).reduce(Money.ZERO, Money::plus);
     }
 
-    Money(BigDecimal amount) {
+    public Money(BigDecimal amount) {
         this.amount = amount;
     }
 

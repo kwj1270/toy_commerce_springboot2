@@ -1,8 +1,8 @@
 package com.kwj1270.commerce.dto.user;
 
-import com.kwj1270.commerce.domain.enums.SocialType;
-import com.kwj1270.commerce.domain.enums.UserStatus;
-import com.kwj1270.commerce.domain.user.Role;
+import com.kwj1270.commerce.domain.user.enums.SocialType;
+import com.kwj1270.commerce.domain.user.enums.UserStatus;
+import com.kwj1270.commerce.domain.user.enums.Role;
 import com.kwj1270.commerce.domain.user.User;
 
 import java.time.LocalDateTime;

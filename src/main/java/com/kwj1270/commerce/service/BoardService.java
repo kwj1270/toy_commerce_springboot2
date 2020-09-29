@@ -35,22 +35,19 @@ public class BoardService {
     }
 
     @Transactional
-    public Long update(Long seq, BoardUpdateRequestDto requestDto){
-        Board board = boardRepository.findBySeq(seq).orElseThrow(() ->
-                new IllegalArgumentException(("해당 게시글이 없습니다. id="+ seq)));
+    public Long update(Long id, BoardUpdateRequestDto requestDto){
+        Board board = boardRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException(("해당 게시글이 없습니다. id="+ id)));
         board.update(requestDto.getTitle(), requestDto.getContent());
-        return seq;
+        return id;
     }
 
     @Transactional
-    public void delete(Long seq){
-        Board board = boardRepository.findBySeq(seq).orElseThrow(() ->
-                new IllegalArgumentException(("해당 게시글이 없습니다. id="+ seq)));
+    public void delete(Long id){
+        Board board = boardRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException(("해당 게시글이 없습니다. id="+ id)));
 
         boardRepository.delete(board);
     }
-
-
-
 
 }

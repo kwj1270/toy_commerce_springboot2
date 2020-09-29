@@ -1,56 +1,62 @@
 package com.kwj1270.commerce.domain.cart;
 
-import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.domain.enums.OrderStatusType;
-import com.kwj1270.commerce.domain.product.Product;
-import com.kwj1270.commerce.domain.user.User;
-import com.kwj1270.commerce.dto.order.OrderSaveRequest;
-import lombok.Builder;
-import lombok.Getter;
+import com.kwj1270.commerce.domain.generic.money.Money;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-@Getter
+@Data
 @NoArgsConstructor
-@Entity
-public class Cart extends BaseTimeEntity { // 장바구니
+public class Cart {
+    private Long userId;
+    private List<CartLineItem> cartLineItems = new ArrayList<>();
 
-    @Id
-    @Column(name = "CART_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "CART_AMOUNT", nullable = false)
-    private Long amount;
-
-    @Column(name = "CART_SUM", nullable = false)
-    private Long sum;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
-
-    @Builder
-    public Cart(Long amount, Long sum, User user,  Product product){
-        this.amount = amount;
-        this.sum = sum;
-        this.user = user;
-        this.product = product;
+    public Cart(Long userId, CartLineItem ... cartLineItems) {
+        this.userId = userId;
+        this.cartLineItems = Arrays.asList(cartLineItems);
     }
 
+    @Data
+    @NoArgsConstructor
+    public static class CartLineItem {
+        private Long menuId;
+        private String name;
+        private int count;
+        private List<CartOptionGroup> groups = new ArrayList<>();
 
-    public void update(Long amount){
-        this.amount = amount;
-        this.sum = getSum();
+        public CartLineItem(Long menuId, String name, int count, CartOptionGroup ... groups) {
+            this.menuId = menuId;
+            this.name = name;
+            this.count = count;
+            this.groups = Arrays.asList(groups);
+        }
     }
 
-    private Long getSum() {
-        return product.getPrice() * amount;
+    @Data
+    @NoArgsConstructor
+    public static class CartOptionGroup {
+        private String name;
+        private List<CartOption> options = new ArrayList<>();
+
+        public CartOptionGroup(String name, CartOption ... options) {
+            this.name = name;
+            this.options = Arrays.asList(options);
+        }
+    }
+
+    @Data
+    @NoArgsConstructor
+    public static class CartOption {
+        private String name;
+        private Money price;
+
+        public CartOption(String name, Money price) {
+            this.name = name;
+            this.price = price;
+        }
     }
 
 }

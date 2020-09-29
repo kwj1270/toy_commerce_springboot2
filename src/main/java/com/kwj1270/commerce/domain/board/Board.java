@@ -1,7 +1,6 @@
 package com.kwj1270.commerce.domain.board;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.domain.enums.BoardType;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;

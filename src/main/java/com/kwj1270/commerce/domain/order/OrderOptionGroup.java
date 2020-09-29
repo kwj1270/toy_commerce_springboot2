@@ -10,6 +10,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@Table(name="ORDER_OPTION_GROUPS")
 @Entity
 public class OrderOptionGroup {
 
@@ -18,7 +19,7 @@ public class OrderOptionGroup {
     @Column(name="ORDER_OPTION_GROUP_ID")
     private Long id;
 
-    @Column(name="NAME")
+    @Column(name="ORDER_OPTION_GROUPS_NAME")
     private String name;
 
     @ElementCollection

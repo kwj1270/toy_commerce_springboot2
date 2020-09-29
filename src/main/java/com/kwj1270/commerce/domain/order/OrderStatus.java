@@ -1,13 +1,13 @@
-package com.kwj1270.commerce.domain.enums;
+package com.kwj1270.commerce.domain.order;
 
-public enum OrderStatusType {
+public enum OrderStatus {
     READY("ready"),
     DELIVERY("delivery"),
     COMPLETE("complete");
 
     private String value;
 
-    OrderStatusType(String value){
+    OrderStatus(String value){
         this.value = value;
     }
 

@@ -1,15 +1,15 @@
 package com.kwj1270.commerce.config.auth.dto;
 
-import com.kwj1270.commerce.domain.enums.SocialType;
-import com.kwj1270.commerce.domain.user.Role;
+import com.kwj1270.commerce.domain.user.enums.SocialType;
+import com.kwj1270.commerce.domain.user.enums.Role;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
-import static com.kwj1270.commerce.domain.enums.SocialType.FACEBOOK;
-import static com.kwj1270.commerce.domain.enums.SocialType.GOOGLE;
-import static com.kwj1270.commerce.domain.enums.SocialType.NAVER;
-import static com.kwj1270.commerce.domain.enums.SocialType.KAKAO;
+import static com.kwj1270.commerce.domain.user.enums.SocialType.FACEBOOK;
+import static com.kwj1270.commerce.domain.user.enums.SocialType.GOOGLE;
+import static com.kwj1270.commerce.domain.user.enums.SocialType.NAVER;
+import static com.kwj1270.commerce.domain.user.enums.SocialType.KAKAO;
 
 import java.util.Map;
 

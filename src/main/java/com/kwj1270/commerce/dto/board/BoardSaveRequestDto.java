@@ -1,7 +1,7 @@
 package com.kwj1270.commerce.dto.board;
 
 import com.kwj1270.commerce.domain.board.Board;
-import com.kwj1270.commerce.domain.enums.BoardType;
+import com.kwj1270.commerce.domain.board.BoardType;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
 

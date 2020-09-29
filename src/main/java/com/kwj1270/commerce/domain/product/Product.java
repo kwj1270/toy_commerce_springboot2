@@ -1,8 +1,8 @@
 package com.kwj1270.commerce.domain.product;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.domain.enums.ProductType;
-import com.kwj1270.commerce.domain.enums.SizeType;
+import com.kwj1270.commerce.domain.generic.money.Money;
+import com.kwj1270.commerce.domain.product.category.Category;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +11,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@Table(name="PRODUCT")
 @Entity
 public class Product extends BaseTimeEntity {
 
@@ -23,7 +24,7 @@ public class Product extends BaseTimeEntity {
     private String name;
 
     @Column(name = "PRODUCT_PRICE", nullable = false)
-    private Long price;
+    private Money price;
 
     @Column(name = "PRODUCT_QUANTITY", nullable = false)
     private Long quantity; // 수량
@@ -31,30 +32,23 @@ public class Product extends BaseTimeEntity {
     @Column(name = "PRODUCT_DESCRIPTION", columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Column(name = "PRODUCT_PICTURE", length = 200, nullable = false)
-    private String picture;
-
-    @Column(name = "PRODUCT_COLOR",length = 200, nullable = false)
-    private String color;
-
     @Enumerated(EnumType.STRING)
-    @Column(name = "PRODUCT_SIZE", nullable = false)
-    private SizeType sizeType;
+    @Column(name = "PRODUCT_STATUS" ,nullable = false)
+    private ProductStatus productStatus;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "PRODUCT_PRODUCT_TYPE", nullable = false)
-    private ProductType productType; // 카테고리
+    @OneToOne(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID")
+    private ProductDetail productDetail;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
 
     @Builder
-    public Product(String name, long price, long quantity, String description, String picture, String color, SizeType sizeType, ProductType productType){
+    public Product(String name, Long quantity, String description){
         this.name = name;
-        this.price = price;
         this.quantity = quantity;
         this.description = description;
-        this.picture = picture;
-        this.color = color;
-        this.sizeType = sizeType;
-        this.productType = productType;
     }
 
 

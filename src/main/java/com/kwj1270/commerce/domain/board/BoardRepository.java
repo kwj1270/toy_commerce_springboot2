@@ -11,6 +11,5 @@ import java.util.Optional;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("SELECT b FROM Board b ORDER BY b.id DESC")
     List<Board> findAllDesc(Pageable pageable);
-    Optional<Board> findBySeq(Long seq);
     Optional<List<Board>> findByUser(User user);
 }

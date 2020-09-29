@@ -12,26 +12,27 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@Table(name="ORDER_LINE_ITEMS")
 @Entity
 public class OrderLineItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ORDER_LINE_ITEM_ID")
+    @Column(name="ORDER_LINE_ITEM_ID")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="PRODUCT_ID")
     private Product product;
 
-    @Column(name = "PRODUCT_NAME")
+    @Column(name="PRODUCT_NAME")
     private String name;
 
-    @Column(name = "PRODUCT_COUNT")
+    @Column(name="PRODUCT_COUNT")
     private int count;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ORDER_LIST_ITEM_ID")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="ORDER_LINE_ITEM_ID")
     private List<OrderOptionGroup> groups = new ArrayList<>();
 
     @Builder
@@ -42,9 +43,8 @@ public class OrderLineItem {
         this.groups.addAll(groups);
     }
 
-    public Money calculatePrice(){
+    public Money calculatePrice() {
         return Money.sum(groups, OrderOptionGroup::calculatePrice).times(count);
     }
-
 
 }

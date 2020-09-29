@@ -1,9 +1,6 @@
 package com.kwj1270.commerce.domain.order;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.domain.address.Address;
-import com.kwj1270.commerce.domain.enums.OrderStatusType;
-import com.kwj1270.commerce.domain.product.Product;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,29 +20,29 @@ public class Order extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private List<OrderLineItem> orderLineItems = new ArrayList<>();
 
-    @Column(name = "ORDER_STATUS_TYPE", nullable = false)
+    @Column(name = "ORDER_STATUS", nullable = false)
     @Enumerated(EnumType.STRING)
-    private OrderStatusType orderStatusType;
+    private OrderStatus orderStatus;
 
     @Builder
-    public Order(User user, List<OrderLineItem> orderLineItems, OrderStatusType orderStatusType){
-        this.user = user;
+    public Order(User user, List<OrderLineItem> orderLineItems, OrderStatus orderStatus){
+        //this.user = user;
         this.orderLineItems.addAll(orderLineItems);
-        this.orderStatusType = orderStatusType;
+        this.orderStatus = orderStatus;
     }
 
-    public void setReady(){this.orderStatusType = OrderStatusType.READY;}
+    public void setReady(){this.orderStatus = OrderStatus.READY;}
     public void setDelivery(){
-        this.orderStatusType = OrderStatusType.DELIVERY;
+        this.orderStatus = OrderStatus.DELIVERY;
     }
-    public void setComplete(){ this.orderStatusType = OrderStatusType.COMPLETE; }
+    public void setComplete(){ this.orderStatus = OrderStatus.COMPLETE; }
 
 }

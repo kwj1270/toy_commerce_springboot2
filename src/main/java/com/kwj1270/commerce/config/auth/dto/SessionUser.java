@@ -1,6 +1,6 @@
 package com.kwj1270.commerce.config.auth.dto;
 
-import com.kwj1270.commerce.domain.enums.SocialType;
+import com.kwj1270.commerce.domain.user.enums.SocialType;
 import com.kwj1270.commerce.domain.user.User;
 import lombok.Getter;
 

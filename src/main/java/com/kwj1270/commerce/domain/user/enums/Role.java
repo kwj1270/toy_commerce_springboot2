@@ -1,4 +1,4 @@
-package com.kwj1270.commerce.domain.user;
+package com.kwj1270.commerce.domain.user.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

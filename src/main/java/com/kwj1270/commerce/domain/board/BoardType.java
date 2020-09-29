@@ -1,4 +1,4 @@
-package com.kwj1270.commerce.domain.enums;
+package com.kwj1270.commerce.domain.board;
 
 public enum BoardType {
     notice("공지사항"),
