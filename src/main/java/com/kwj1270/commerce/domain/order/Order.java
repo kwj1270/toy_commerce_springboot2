@@ -12,7 +12,8 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "ORDER_TABLE")
+@Table(name="ORDER_TABLE")
+@Entity
 public class Order extends BaseTimeEntity {
 
     @Id

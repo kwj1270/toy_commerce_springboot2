@@ -1,9 +1,12 @@
 package com.kwj1270.commerce.domain.user.address;
 
+import com.kwj1270.commerce.domain.user.UserAddress;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -16,7 +19,7 @@ public class Address {
     @Column(name = "ADDRESS_ID")
     private Long id;
 
-    @Column(name = "ADDRESS_POST_CODE")
+    @Column(name = "ADDRESS_POST_CODE", nullable = false)
     private String postCode;
 
     @Column(name = "ADDRESS_ADDRESS", nullable = false)

@@ -1,6 +1,7 @@
 package com.kwj1270.commerce.domain.order;
 
 import com.kwj1270.commerce.domain.generic.money.Money;
+import com.kwj1270.commerce.domain.order.delivery.Delivery;
 import com.kwj1270.commerce.domain.product.Product;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,10 @@ public class OrderLineItem {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="PRODUCT_ID")
     private Product product;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="ORDER_LINE_ITEM_ID")
+    private Delivery delivery;
 
     @Column(name="PRODUCT_NAME")
     private String name;

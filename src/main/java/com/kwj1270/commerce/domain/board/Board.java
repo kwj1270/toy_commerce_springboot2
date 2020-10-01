@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 @Getter
 @NoArgsConstructor
+@Table(name="BOARD")
 @Entity
 public class Board extends BaseTimeEntity implements Serializable {
 
@@ -32,7 +33,7 @@ public class Board extends BaseTimeEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private BoardType boardType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User user;
 

@@ -32,17 +32,17 @@ public class Product extends BaseTimeEntity {
     @Column(name = "PRODUCT_DESCRIPTION", columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "PRODUCT_STATUS" ,nullable = false)
-    private ProductStatus productStatus;
-
-    @OneToOne(fetch =  FetchType.LAZY)
+    @OneToOne(fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUCT_ID")
     private ProductDetail productDetail;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PRODUCT_STATUS" ,nullable = false)
+    private ProductStatus productStatus;
 
     @Builder
     public Product(String name, Long quantity, String description){

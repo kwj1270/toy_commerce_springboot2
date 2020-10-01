@@ -1,7 +1,6 @@
 package com.kwj1270.commerce.domain.user;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.domain.user.address.Address;
 import com.kwj1270.commerce.domain.user.enums.Role;
 import com.kwj1270.commerce.domain.user.enums.SocialType;
 import com.kwj1270.commerce.domain.user.enums.UserStatus;
@@ -10,10 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@Table(name="USER")
 @Entity
 public class User extends BaseTimeEntity{
 
@@ -37,9 +38,9 @@ public class User extends BaseTimeEntity{
     @Column(name = "USER_PICTURE")
     private String picture;
 
-    @ManyToMany(fetch =  FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private List<Address> addresses;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID")
+    private List<UserAddress> userAddresses = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "USER_ROLE" ,nullable = false)

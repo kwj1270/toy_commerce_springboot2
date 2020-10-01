@@ -22,6 +22,4 @@ public class Size {
     @Column(name = "SIZE_INCH", nullable = false)
     private int inch;
 
-
-
 }
