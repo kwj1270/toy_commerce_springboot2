@@ -12,7 +12,7 @@ public class UserSaveRequestDto {
     private String password;
     private String email;
     private String picture;
-    private final Role role = Role.GUEST;
+    private final Role role = Role.USER;
     private final SocialType socialType = SocialType.NORMAL;
     private final UserStatus userStatus = UserStatus.ACTIVE;
 

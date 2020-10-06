@@ -1,6 +1,6 @@
-package com.kwj1270.commerce.infra.generic.money;
+package com.kwj1270.commerce.generic.money.infra;
 
-import com.kwj1270.commerce.domain.generic.money.Ratio;
+import com.kwj1270.commerce.generic.money.domain.Ratio;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

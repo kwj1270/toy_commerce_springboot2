@@ -1,9 +1,8 @@
 package com.kwj1270.commerce.domain.order;
 
-import com.kwj1270.commerce.domain.generic.money.Money;
+import com.kwj1270.commerce.generic.money.domain.Money;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

@@ -1,4 +1,4 @@
-package com.kwj1270.commerce.service;
+package com.kwj1270.commerce.service.user;
 
 import com.kwj1270.commerce.config.auth.dto.SessionUser;
 import com.kwj1270.commerce.domain.user.User;
@@ -56,6 +56,5 @@ public class UserService {
                 IllegalArgumentException("해당 사용자 없습니다. id="+ id));
         userRepository.delete(user);
     }
-
 
 }

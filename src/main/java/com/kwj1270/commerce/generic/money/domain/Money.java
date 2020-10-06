@@ -1,7 +1,4 @@
-package com.kwj1270.commerce.domain.generic.money;
-
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+package com.kwj1270.commerce.generic.money.domain;
 
 import java.math.BigDecimal;
 import java.util.Collection;

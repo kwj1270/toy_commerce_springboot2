@@ -1,5 +1,6 @@
 package com.kwj1270.commerce.domain.user;
 
+import com.kwj1270.commerce.config.auth.dto.SessionUser;
 import com.kwj1270.commerce.domain.BaseTimeEntity;
 import com.kwj1270.commerce.domain.user.enums.Role;
 import com.kwj1270.commerce.domain.user.enums.SocialType;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="USER")
 @Entity
-public class User extends BaseTimeEntity{
+public class User extends BaseTimeEntity {
 
     @Id
     @Column(name = "ID")
@@ -43,7 +44,8 @@ public class User extends BaseTimeEntity{
     private List<UserAddress> userAddresses = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "USER_ROLE" ,nullable = false)
+    @Column(nullable = false)
+    //@Column(name = "USER_ROLE" ,nullable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)
@@ -89,8 +91,11 @@ public class User extends BaseTimeEntity{
         return this;
     }
 
-    public String getRoleKey(){
+    public String getRoleKey() {
         return this.role.getKey();
+    }
+    public boolean isSameUser(SessionUser other){
+        return userId.equals(other.getUserId());
     }
 
 }

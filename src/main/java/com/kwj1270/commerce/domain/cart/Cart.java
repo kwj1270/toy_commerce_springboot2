@@ -1,6 +1,6 @@
 package com.kwj1270.commerce.domain.cart;
 
-import com.kwj1270.commerce.domain.generic.money.Money;
+import com.kwj1270.commerce.generic.money.domain.Money;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

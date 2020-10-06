@@ -10,7 +10,15 @@
 <body>
     <div th:replace="layout/header::header"></div>
     <div th:replace="layout/footer::footer"></div>
-
+    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">
+        Google Login
+    </a>
+    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">
+        Naver Login
+    </a>
+    <a href="/oauth2/authorization/kakao" class="btn btn-warning active" role="button">
+        카카오 로그인
+    </a>
     <script th:src="@{/js/jquery.min.js}"/>
     <script th:src="@{/js/bootstrap.min.js}"/>
     <script th:src="@{/js/popper.min.js}"/>

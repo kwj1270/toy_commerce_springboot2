@@ -54,10 +54,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         SpringSecurity 에서는 ROLE_ 접두사가 붙은 단어로 사용자 구분
         ROLE_GUEST / ROLE_USER / ROLE_ADMIN 이 존재한다.
         */
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
+        return new DefaultOAuth2User(
+                Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
-    }
+        }
 
     // Optional 클래스를 이용한 null 유무에 따른 처리
     // Optional<User> 이다

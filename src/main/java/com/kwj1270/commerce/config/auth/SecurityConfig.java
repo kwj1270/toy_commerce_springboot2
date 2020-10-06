@@ -1,5 +1,6 @@
 package com.kwj1270.commerce.config.auth;
 
+import com.kwj1270.commerce.domain.user.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,16 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             X-frame-options 헤더는 클릭재킹 어택 -> 즉, 버튼 클릭시 기존 버튼이 아닌 다른 요소를 클릭한 이벤트를 실행하게 하는 공격 수법
        */
         http
-                .addFilterBefore(filter, CsrfFilter.class).csrf().disable().headers().frameOptions().disable();
-
+                //.addFilterBefore(filter, CsrfFilter.class).csrf().disable().headers().frameOptions().disable();
+                .csrf().disable().headers().frameOptions().disable();
         /*
         .antMatchers("url주소").permitAll() 해당 주소 허용
         .anyRequest().authenticated(); 그외에는 비허용
          */
         http    .authorizeRequests()
-                    .antMatchers("/", "/oauth2/**", "/payment/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**", "/h2-console/**", "/profile").permitAll()
-                    .anyRequest().authenticated();
-
+                .antMatchers("/login","/css/**","/images/**","/js/**","/h2-console/**").permitAll()
+                .antMatchers("/api/v1/**", "/main2/**").hasRole(Role.USER.name())
+                .anyRequest().authenticated();
 
         http
                 .exceptionHandling() // 예외사항을 설정
@@ -45,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         */
         http
                 .logout() // logout 관련된 설정을 진행 알림 구문 -> 이후는 logout 진행하겠다.
-                    .logoutUrl("/logout") // 로그아웃을 진행할 url 설정
+                    //.logoutUrl("/logout") // 로그아웃을 진행할 url 설정, 즉 해당 html로 이동, 없으면 바로 로직실행
                     .logoutSuccessUrl("/login") // 로그아웃 성공시 이동 페이지
                     .deleteCookies("JSESSIONID") // 로그아웃시 쿠키 지움 -> 세션 ID 쿠키 지움
                     .invalidateHttpSession(true); // 로그아웃시 인증정보 지우고 세션 종료
@@ -53,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .oauth2Login() // oauth2 로그인 설정 진행 알림 구문 -> 이후는 oauth2 로그인설정이다.
                     .loginPage("/login") // 로그인 페이지 지정
-                    .loginProcessingUrl("/loginProcess") // 로그인이 수행될 url 지정 -> 해당 url로 바로 로그인을 실행하기에 authenticationEntryPoint 와 같이 사용x
+                    //.loginProcessingUrl("/loginProcess") // 로그인이 수행될 url 지정 -> 해당 url로 바로 로그인을 실행하기에 authenticationEntryPoint 와 같이 사용x
                     .defaultSuccessUrl("/main") // 로그인 성공후 이동 url 지정
                     .failureUrl("/login") // 로그인 실패시 이동 url 지정
                     .userInfoEndpoint() // OAuth2 로그인 성공 후 사용자 정보를 가져올 때의 설정들을 담당합니다.

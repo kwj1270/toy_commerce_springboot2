@@ -1,4 +1,4 @@
-package com.kwj1270.commerce.domain.generic.money;
+package com.kwj1270.commerce.generic.money.domain;
 
 import lombok.NoArgsConstructor;
 
