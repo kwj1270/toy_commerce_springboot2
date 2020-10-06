@@ -20,8 +20,10 @@ SNS를 이용한 결제 웹 애플리케이션
 * 추가적으로 MoneyConverter 가 문제가 생김
     * 스프링 서버가 재시동될 때 있는데 이미 기존에 converter가 있어서 mutiple time 으로 시간초과 에러 발생
     * 해결방법으로 모듈중복인지 검사, jar 중복인지 검사, @Converter, @Convert 혼용하는지 검사, 변환 클래스와 경로에 있나 검사   
-    * 경로는 누가 위에 있는지 같은 경로인지 등등 확인해야겠다.   
+    * 경로는 누가 위에 있는지 같은 경로인지 등등 확인해야겠다.  
+* build 에서 갱신 에러가 있는 것 같던데 확인해야겠다.       
 * 기타 배운점 
     * hasRole() 하면 `ROLE_`이 붙어서 처리되므로 저장할때 GUEST,USER,ADMIN 으로 저장 바람   
     * `defaultSuccessUrl()`는 직접 넘기지만 `.loginPage("/login")` 은 Controller에 해당 경로 처리가 있어야한다.   
+    * `return this` 로 해서 체이닝 기법을 이용하는 방법도 좋다.   
     
