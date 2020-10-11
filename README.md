@@ -55,4 +55,4 @@ SNS를 이용한 결제 웹 애플리케이션
   * 사실 알고보니 oauth2 로그인을 하게 되면 이전 페이지로 리다이렉트한다.
   * 나는 `.defaultSuccessUrl("/main")` 로 강제했기 때문에 둘이 충돌 된 것이다.  
   * `.defaultSuccessUrl("/main", true)`로 해주면 리다이렉트를 해당 url로 강제할 수 있어요    
-  
+  * https://stackoverflow.com/questions/49675747/spring-security-oauth2-login-redirect-to-error-page-despite-being-successful    
