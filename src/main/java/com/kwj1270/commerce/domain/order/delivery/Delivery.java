@@ -1,6 +1,5 @@
 package com.kwj1270.commerce.domain.order.delivery;
 
-import com.kwj1270.commerce.domain.order.Order;
 import com.kwj1270.commerce.domain.order.OrderLineItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

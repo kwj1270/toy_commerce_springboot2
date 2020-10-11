@@ -1,12 +1,9 @@
 package com.kwj1270.commerce.domain.user.address;
 
-import com.kwj1270.commerce.domain.user.UserAddress;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor

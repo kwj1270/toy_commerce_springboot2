@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+// 게시판, 댓글 아이디랑 동일한지 비교 만들어야함
 @Getter
 public class SessionUser implements Serializable {
 
