@@ -25,8 +25,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**","/images/**","/js/**","/h2-console/**");
+        web.ignoring()
+                .antMatchers("/resources/**")
+                .antMatchers("/css/**")
+                .antMatchers("/vendor/**")
+                .antMatchers("/js/**")
+                .antMatchers("/favicon*/**")
+                .antMatchers("/h2-console/**")
+                .antMatchers("/images/**");
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,8 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         * */
         http
                 .authorizeRequests()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/main").hasRole(Role.USER.name())
+                    .antMatchers("/", "/index/**","/login/**",  "/signup/**").permitAll()
+                    .antMatchers("/main/**").hasAnyRole(Role.GUEST.name(), Role.USER.name(), Role.ADMIN.name())
+                    .antMatchers("/admin").hasRole(Role.ADMIN.name())
                     .anyRequest().authenticated();
 
         /*
@@ -68,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .oauth2Login()
                 .loginPage("/login")
-                .defaultSuccessUrl("/main")
+                .defaultSuccessUrl("/main",true)
                 .failureUrl("/login")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
@@ -83,8 +92,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/login")
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true);
-
-
     }
 
 }
