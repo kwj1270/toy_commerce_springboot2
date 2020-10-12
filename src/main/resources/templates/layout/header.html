@@ -2,19 +2,18 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <nav class="site-header sticky-top py-1" th:fragment="header">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" aria-label="Product" title="Original:  Rob Janoff / Public domain" th:href="@{https://commons.wikimedia.org/wiki/File:Apple_logo_dark_grey.svg}">
-                <img width="32" alt="Apple logo dark grey" th:src="@{https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Apple_logo_dark_grey.svg/32px-Apple_logo_dark_grey.svg.png}">
+            <a class="py-2" aria-label="Product" title="Original:  Rob Janoff / Public domain" th:href="@{/}">
+                <img width="16" alt="Apple logo dark grey" th:src="@{https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Apple_logo_dark_grey.svg/32px-Apple_logo_dark_grey.svg.png}">
             </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Mac</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">iPad</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">iPhone</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Watch</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Music</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">고객지원</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Search</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+            <a class="py-2 d-none d-md-inline-block" href="mac">Mac</a>
+            <a class="py-2 d-none d-md-inline-block" href="ipad">iPad</a>
+            <a class="py-2 d-none d-md-inline-block" href="iphone">iPhone</a>
+            <a class="py-2 d-none d-md-inline-block" href="watch">Watch</a>
+            <a class="py-2 d-none d-md-inline-block" href="music">Music</a>
+            <a class="py-2 d-none d-md-inline-block" href="customer">고객지원</a>
+            <a class="py-2 d-none d-md-inline-block" href="search">Search</a>
         </div>
     </nav>
 </footer>
-
+    <script th:src="@{/js/bootstrap.min.js}"/>
 </html>

@@ -56,3 +56,7 @@ SNS를 이용한 결제 웹 애플리케이션
   * 나는 `.defaultSuccessUrl("/main")` 로 강제했기 때문에 둘이 충돌 된 것이다.  
   * `.defaultSuccessUrl("/main", true)`로 해주면 리다이렉트를 해당 url로 강제할 수 있어요    
   * https://stackoverflow.com/questions/49675747/spring-security-oauth2-login-redirect-to-error-page-despite-being-successful    
+
+## 2020/10/12 회고록:
+* 반응형 이미지 넣기 : https://mdbootstrap.com/snippets/jquery/mdbootstrap/916526#css-tab-view
+* 

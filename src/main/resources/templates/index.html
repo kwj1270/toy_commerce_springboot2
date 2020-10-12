@@ -34,32 +34,36 @@
   </head>
   <body>
   <div th:replace="layout/header::header"></div>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+     style="  background-image: url('images/apple_watch6.jpg');
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              height: 100%;">
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
   <div class="col-md-5 p-lg-5 mx-auto my-5">
-    <h1 class="display-4 font-weight-normal">프로를 프로답게.</h1>
-    <p class="lead font-weight-normal">새로운 아이폰, 달라진 것은 단 하나, 전부입니다.</p>
-    <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+    <h1 class="display-4 font-weight-normal"
+        style="color : white;">APPLE WATCH</h1>
+    <p class="lead font-weight-normal"
+       style="color : red; text-shadow: 1px 1px 7px #000;">SERIES 6</p>
+    <p class="lead font-weight-normal"  style="color : white;">건강의 미래, 이미 손목 위에.</p>
+    <a class="btn btn-outline-primary" href="watch">Coming soon</a>
   </div>
-  <div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 </div>
 
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+  <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
+       style="  background-image: url('images/mac_pro2.jpeg');
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              height: 100%;">
     <div class="my-3 py-3">
       <h2 class="display-5">Another headline</h2>
       <p class="lead">And an even wittier subheading.</p>
     </div>
     <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
   </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Another headline</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
 </div>
 
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
@@ -70,6 +74,9 @@
     </div>
     <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
   </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
   <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
       <h2 class="display-5">Another headline</h2>
@@ -95,27 +102,10 @@
     <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
   </div>
 </div>
-
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Another headline</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Another headline</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
-</div>
     <div th:replace="layout/footer::footer"></div>
     <!--보안을 위한 jquery-->
     <script th:src="@{/js/jquery.min.js}" />
       <script>window.jQuery || document.write('<script th:src="@{/js/jquery.min.js}"/>')</script>
-    <script th:src="@{/js/bootstrap.min.js}"/>
+  <script th:src="@{/js/bootstrap.min.js}"/>
   </body>
 </html>
