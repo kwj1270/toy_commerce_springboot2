@@ -38,7 +38,7 @@ public class User extends BaseTimeEntity {
     @Column(name = "USER_PICTURE")
     private String picture;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY) // many to many 관계이므로 CASCADE 삭제는 안함
     @JoinColumn(name = "ID")
     private List<UserAddress> userAddresses = new ArrayList<>();
 

@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @RequiredArgsConstructor
 @Controller
-public class WebController {
+public class UserDetailsController {
 
     @GetMapping("/username")
     @ResponseBody

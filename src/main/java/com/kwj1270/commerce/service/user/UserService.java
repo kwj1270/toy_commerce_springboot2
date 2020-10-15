@@ -4,6 +4,7 @@ import com.kwj1270.commerce.config.auth.dto.SessionUser;
 import com.kwj1270.commerce.domain.user.User;
 import com.kwj1270.commerce.domain.user.UserRepository;
 import com.kwj1270.commerce.dto.user.UserListResponseDto;
+import com.kwj1270.commerce.dto.user.UserResponseDto;
 import com.kwj1270.commerce.dto.user.UserSaveRequestDto;
 import com.kwj1270.commerce.dto.user.UserUpdateRequestDto;
 
@@ -27,11 +28,18 @@ public class UserService {
     }
 
     @Transactional
-    public Long login(String id, String password){
+    public Long login(Long id, String password){
         User user = userRepository.findByIdAndPassword(id, password).orElseThrow(() -> new
                 IllegalArgumentException("해당 아이디 또는 비밀번호가 존재하지 않습니다."));
         httpSession.setAttribute("user", new SessionUser(user));
         return user.getId();
+    }
+
+    @Transactional
+    public UserResponseDto findById(Long id){
+        User entity =  userRepository.findById(id).orElseThrow(() -> new
+                IllegalArgumentException("해당 사용자가 존재하지 않습니다. id="+id));
+        return new UserResponseDto(entity);
     }
 
     @Transactional
@@ -43,15 +51,15 @@ public class UserService {
     }
 
     @Transactional
-    public Long update(String id, UserUpdateRequestDto requestDto){
+    public Long update(Long id, UserUpdateRequestDto requestDto){
         User user = userRepository.findById(id).orElseThrow(() -> new
-                IllegalArgumentException("해당 사용자가 없습니다. id="+ id));
+                IllegalArgumentException("해당 사용자가 존재하지 않습니다. id="+id));
         user.update(requestDto.getName(), requestDto.getPassword(), requestDto.getPicture());
         return user.getId();
     }
 
     @Transactional
-    public void delete(String id){
+    public void delete(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new
                 IllegalArgumentException("해당 사용자 없습니다. id="+ id));
         userRepository.delete(user);

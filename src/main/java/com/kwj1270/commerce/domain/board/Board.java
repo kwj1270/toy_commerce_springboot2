@@ -42,7 +42,6 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "BOARD_ID")
     private List<Comment> comments;
 
-
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType, User user, List<Comment> comments) {
         this.title = title;

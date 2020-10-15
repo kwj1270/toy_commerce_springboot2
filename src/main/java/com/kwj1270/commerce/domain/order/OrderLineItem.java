@@ -22,11 +22,11 @@ public class OrderLineItem {
     @Column(name="ORDER_LINE_ITEM_ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY) // 단순 참조만 하므로 CASCADE 안합니다.
     @JoinColumn(name="PRODUCT_ID")
     private Product product;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 같이 삭제
     @JoinColumn(name="ORDER_LINE_ITEM_ID")
     private Delivery delivery;
 

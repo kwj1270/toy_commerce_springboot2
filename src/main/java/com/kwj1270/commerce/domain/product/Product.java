@@ -36,7 +36,7 @@ public class Product extends BaseTimeEntity {
     @JoinColumn(name = "PRODUCT_ID")
     private ProductDetail productDetail;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY) // 단순 참조만 한 것이기에 CASCADE 사용 x
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 

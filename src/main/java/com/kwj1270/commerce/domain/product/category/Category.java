@@ -19,7 +19,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 해당 카테고리 삭제되면 다 삭제함 ㅎ;
     @Column(name = "CATEGORY_ID")
     private List<Product> products = new ArrayList<>();
 
