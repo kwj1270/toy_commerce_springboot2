@@ -1,7 +1,7 @@
 package com.kwj1270.commerce.config.auth.dto;
 
-import com.kwj1270.commerce.domain.user.enums.SocialType;
 import com.kwj1270.commerce.domain.user.User;
+import com.kwj1270.commerce.domain.user.enums.SocialType;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -25,6 +25,6 @@ public class SessionUser implements Serializable {
     }
 
     public boolean isLogin() {
-        return this != null ? true : false;
+        return userId != null;
     }
 }

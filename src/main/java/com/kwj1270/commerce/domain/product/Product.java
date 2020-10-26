@@ -1,8 +1,8 @@
 package com.kwj1270.commerce.domain.product;
 
 import com.kwj1270.commerce.domain.BaseTimeEntity;
-import com.kwj1270.commerce.generic.money.domain.Money;
 import com.kwj1270.commerce.domain.product.category.Category;
+import com.kwj1270.commerce.generic.money.domain.Money;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
